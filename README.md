@@ -1,4 +1,4 @@
-# BlockParty
-A PocketMine-MP plugin which makes BlockParties possible.
+# MineParty
+A PocketMine-MP plugin which makes MineParties possible, an exclusive prison minigame.
 
 Coming soon.
