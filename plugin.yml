@@ -8,9 +8,9 @@ commands:
   mineparty:
     usage: "/mineparty <join>"
     aliases: [mp]
-    
+
 permissions:
   mineparty.admin:
-    	description: "/mineparty <start>"
-    	default: op
+    description: "/mineparty start"
+    default: op
 ...
