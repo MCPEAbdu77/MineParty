@@ -10,8 +10,8 @@ will win and the reward is $1000 per block mined. (`//TODO Adjustable rewards in
 
 # Permissions
 
- `/mineparty start` - `mineparty.admin`
- `/mineparty join` - any player can join (`//TODO perms for this cmd`)
+ - `/mineparty start` - `mineparty.admin`
+ - `/mineparty join` - any player can join (`//TODO perms for this cmd`)
 
 # Installation
 
