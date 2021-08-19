@@ -10,7 +10,7 @@ commands:
     aliases: [mp]
     
 permissions:
-	mineparty.admin:
+  mineparty.admin:
     	description: "/mineparty <start>"
     	default: op
 ...
