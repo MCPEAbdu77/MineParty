@@ -17,7 +17,6 @@ class Main extends PluginBase implements Listener{
 	public function onEnable()
 	{
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
-		$this->getServer()->getLogger()->info(C::GREEN."MineParty Enabled! by MCA7#1245");
 		$this->players = new Config($this->getDataFolder(). "blocks.yml");
 		$this->db = new Config($this->getDataFolder(). "status.yml");
 		$this->db->setNested("STATUS", "off");
@@ -131,7 +130,6 @@ class Main extends PluginBase implements Listener{
 	{
         	unlink($this->getDataFolder()."blocks.yml");
         	unlink($this->getDataFolder()."status.yml");
-        	$this->getServer()->getLogger()->info("STATUS and BLOCKS yml files deleted!");
      	}
 
 }
