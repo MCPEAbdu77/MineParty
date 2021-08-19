@@ -1,0 +1,16 @@
+---
+name: MineParty
+version: 1.0.0
+main: MCA7\MineParty\Main
+api: 3.20.0
+
+commands:
+  mineparty:
+    usage: "/mineparty <join>"
+    aliases: [mp]
+    
+permissions:
+	mineparty.admin:
+    	description: "/mineparty <start>"
+    	default: op
+...

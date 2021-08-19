@@ -1,0 +1,10 @@
+# ========================
+# MineParty by MCA7#1245
+# ========================
+# Copyright(C) 2021
+
+# How long will the MineParty last? (Longer time = more stress on the server)
+minutes: 1
+
+# Only yaml available for now!
+database: yaml 
