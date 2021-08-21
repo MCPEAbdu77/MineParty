@@ -127,12 +127,4 @@ class Main extends PluginBase implements Listener{
 		}
 		} 
 	}
-    
-	
-    	public function onDisable()
-	{
-        	unlink($this->getDataFolder()."blocks.yml");
-        	unlink($this->getDataFolder()."status.yml");
-     	}
-
 }
