@@ -5,6 +5,5 @@
 
 # How long will the MineParty last? (Longer time = more stress on the server)
 minutes: 1
-
-# Only yaml available for now!
-database: yaml 
+# Rewards
+money-per-block-mined: 1000
