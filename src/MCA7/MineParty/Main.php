@@ -122,10 +122,10 @@ class Main extends PluginBase implements Listener
 				}
 				$winner = max($this->players);
 				$player = array_search($winner, $this->players);
-				$reward = (int)$winner * (int)$this->getConfig()->get('price-money');
+				$reward = (int)$winner * (int)$this->getConfig()->get("price-money");
 				$this->getServer()->broadcastMessage(" §6Winner§e:
 				\n §b" . $player . C::RED . " : " . C::YELLOW . $winner . " Blocks
-				\n §b" . $player . " §ewins §f$" . $reward . " §e($1000 per block mined) 
+				\n §b" . $player . " §ewins §f$" . $reward . " §e($" .$this->getConfig()->get("price-money"). " per block mined) 
 				\n§7===== §l========= ===== §r§7=====");
 				EconomyAPI::getInstance()->addMoney($player, (int)$reward);
 				foreach ($this->players as $player) {
