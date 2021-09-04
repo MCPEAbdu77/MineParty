@@ -115,9 +115,9 @@ class Main extends PluginBase implements Listener
 				$this->getServer()->broadcastMessage("§7===== §l§eMINE§fPARTY §cENDED §r§7=====");
 				if ($this->players == null) {
 					$this->getServer()->broadcastMessage(" §cNo players joined the event§f! 
-                    \n §eJoin for the next MineParty by using 
-                    \n §c/mineparty join §ewhen the event starts§f!
-                    \n§7===== §l========= ===== §r§7=====");
+                    			\n §eJoin for the next MineParty by using 
+                    			\n §c/mineparty join §ewhen the event starts§f!
+                    			\n§7===== §l========= ===== §r§7=====");
 					return;
 				}
 				$winner = max($this->players);
