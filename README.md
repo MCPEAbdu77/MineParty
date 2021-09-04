@@ -1,17 +1,17 @@
 # MineParty
-A PocketMine-MP plugin which makes MineParties possible, an exclusive prison minigame.
-(Originally developed for DCPE Network)
+A PocketMine-MP plugin which makes MineParties possible.
 
 # How to Play?
 
 MineParty can only be started manually by an admin or through console via the `/mineparty start` command.
 Players can then use the  `/mineparty join` command to join the game. The player with the most blocks mined during the period
-will win and the reward is $1000 per block mined. (`//TODO Adjustable rewards in config.yml`)
+will win and the reward is $1000 (default) per block mined. (`//TODO Adjustable rewards in config.yml`)
 
 # Permissions
 
  - `/mineparty start` - `mineparty.admin`
  - `/mineparty join` - any player can join (`//TODO perms for this cmd`)
+ - `/mineparty quit` - quit any joined games
 
 # Installation
 
