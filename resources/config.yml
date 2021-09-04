@@ -1,9 +1,15 @@
-# ========================
-# MineParty by MCA7#1245
-# ========================
-# Copyright(C) 2021
+#   __  __   _                  ____                   _
+#  |  \/  | (_)  _ __     ___  |  _ \    __ _   _ __  | |_   _   _
+#  | |\/| | | | | '_ \   / _ \ | |_) |  / _` | | '__| | __| | | | |
+#  | |  | | | | | | | | |  __/ |  __/  | (_| | | |    | |_  | |_| |
+#  |_|  |_| |_| |_| |_|  \___| |_|      \__,_| |_|     \__|  \__, |
+#                                                            |___/
+# Copyright (C) 2021 MCA7#1245
 
-# How long will the MineParty last? (Longer time = more stress on the server)
+# How long will the MineParty last?
 minutes: 1
-# Rewards
-money-per-block-mined: 1000
+
+# How much $$ will the winner receive per block mined? (Integer)
+price-money: 1000
+
+# TODO => Messages
