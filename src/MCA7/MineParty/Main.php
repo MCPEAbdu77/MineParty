@@ -101,7 +101,7 @@ class Main extends PluginBase implements Listener
 		$name = $e->getPlayer()->getName();
 		if ($this->status["STATUS"] === "on") {
 			$time_end = microtime(true);
-			$time = $time_end - (float)$this->db->getNested("timeS");
+			$time = $time_end - (float)$this->status["timeStart"];
 			$hours = (int)($time / 60 / 60);
 			$minutes = (int)($time / 60) - $hours * 60;
 			if ($minutes >= (int)$this->getConfig()->get("minutes")) {
