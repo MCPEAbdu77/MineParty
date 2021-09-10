@@ -20,16 +20,14 @@ use pocketmine\utils\Config;
 class Main extends PluginBase implements Listener
 {
 
-	private $db;
+	private $status = [];
 	private $players = [];
 
 	public function onEnable()
 	{
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
-		$this->db = new Config($this->getDataFolder() . "status.yml");
-		$this->db->setNested("STATUS", "off");
-		$this->db->setNested("timeS", 0);
-		$this->db->save();
+		$this->status["STATUS"] = "off";
+                $this->status["timeStart"] = 0;
 	}
 
 	public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool
@@ -42,7 +40,7 @@ class Main extends PluginBase implements Listener
 			switch ($args[0]) {
 				case 'join':
 					if ($sender instanceof Player) {
-						if ($this->db->getNested("STATUS") == "on") {
+						if ($this->status["STATUS"] === "on") {
 							$this->players[$sender->getName()] = 0;
 							$sender->sendMessage("§l§eMine§fParty §7: §r§aJoined the MineParty§f! §aThe player with the highest number of blocks broken wins§f! 
 							\n§cUse §e/mineparty quit §cto quit the game§7!");
@@ -55,7 +53,7 @@ class Main extends PluginBase implements Listener
 					}
 					return true;
 				case 'quit':
-					if ($sender instanceof Player and $this->db->getNested("STATUS") === "on") {
+					if ($sender instanceof Player and $this->status["STATUS"] === "on") {
 						if (isset($this->players[$sender->getName()])) {
 							unset($this->players[$sender->getName()]);
 							$sender->sendMessage("§e> §cYou have left the mineparty!");
@@ -69,8 +67,7 @@ class Main extends PluginBase implements Listener
 					return true;
 				case 'start':
 					if (!$sender instanceof Player or $sender->hasPermission("mineparty.admin")) {
-						$this->db->setNested("STATUS", "on");
-						$this->db->save();
+						$this->status["STATUS"] = "on";
 						$sender->sendMessage("§l§eMine§fParty §7: §r§bMineparty initiated§f!");
 						$this->getServer()->broadcastMessage("§7===== §l§eMINE§fPARTY §aSTARTED §r§7===== 
 						\n §bUse §c/mineparty join §bto join the game§f. 
@@ -78,8 +75,7 @@ class Main extends PluginBase implements Listener
 						\n §bEnding in " . $this->getConfig()->get("minutes") . " min(s). 
 						\n§7===== §l========= ======= §r§7=====");
 						$time_start = microtime(true);
-						$this->db->setNested("timeS", (float)$time_start);
-						$this->db->save();
+						$this->status["timeStart"] = (float)$time_start;
 					} else {
 						$sender->sendMessage("§l§eMine§fParty §7: §r§cYou do not have the permission to use this command!");
 					}
@@ -103,15 +99,14 @@ class Main extends PluginBase implements Listener
 	public function onBreak(BlockBreakEvent $e)
 	{
 		$name = $e->getPlayer()->getName();
-		if ($this->db->getNested("STATUS") === "on") {
+		if ($this->status["STATUS"] === "on") {
 			$time_end = microtime(true);
 			$time = $time_end - (float)$this->db->getNested("timeS");
 			$hours = (int)($time / 60 / 60);
 			$minutes = (int)($time / 60) - $hours * 60;
 			if ($minutes >= (int)$this->getConfig()->get("minutes")) {
-				$this->db->setNested("STATUS", "off");
-				$this->db->setNested("timeS", 0);
-				$this->db->save();
+				$this->status["STATUS"] = "off";
+				$this->status["timeStart"] = 0;
 				$this->getServer()->broadcastMessage("§7===== §l§eMINE§fPARTY §cENDED §r§7=====");
 				if ($this->players == null) {
 					$this->getServer()->broadcastMessage(" §cNo players joined the event§f! 
