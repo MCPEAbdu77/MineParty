@@ -8,9 +8,12 @@ depend: EconomyAPI
 commands:
   mineparty:
     usage: "/mineparty <join/quit>"
+    permission: mineparty.command
     aliases: [mp]
 
 permissions:
+  mineparty.command:
+    default: true
   mineparty.admin:
     description: "/mineparty start"
     default: op
