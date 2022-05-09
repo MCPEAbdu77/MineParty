@@ -10,7 +10,7 @@ use pocketmine\{command\Command,
 	command\CommandSender,
 	event\block\BlockBreakEvent,
 	event\player\PlayerQuitEvent,
-	Player,
+	player\Player,
 	Server};
 use pocketmine\utils\TextFormat as C;
 use onebone\economyapi\EconomyAPI;
@@ -23,7 +23,7 @@ class Main extends PluginBase implements Listener
 	private $status = [];
 	private $players = [];
 
-	public function onEnable()
+	public function onEnable():void
 	{
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
 		$this->status["STATUS"] = "off";
@@ -84,7 +84,7 @@ class Main extends PluginBase implements Listener
 		}
 	}
 
-	public function onQuit(PlayerQuitEvent $event)
+	public function onQuit(PlayerQuitEvent $event):void
 	{
 		if (isset($this->players[$event->getPlayer()->getName()])) {
 			unset($this->players[$event->getPlayer()->getName()]);
@@ -96,7 +96,7 @@ class Main extends PluginBase implements Listener
 	 * @priority MONITOR
 	 */
 
-	public function onBreak(BlockBreakEvent $e)
+	public function onBreak(BlockBreakEvent $e):void
 	{
 		$name = $e->getPlayer()->getName();
 		if ($this->status["STATUS"] === "on") {
