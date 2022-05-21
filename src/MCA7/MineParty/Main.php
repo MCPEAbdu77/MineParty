@@ -82,6 +82,7 @@ class Main extends PluginBase implements Listener
 			}
 			return true;
 		}
+		return true;
 	}
 
 	public function onQuit(PlayerQuitEvent $event):void
