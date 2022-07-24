@@ -13,8 +13,8 @@ use pocketmine\{command\Command,
 	player\Player,
 	Server};
 use pocketmine\utils\TextFormat as C;
-use onebone\economyapi\EconomyAPI;
 use pocketmine\utils\Config;
+use cooldogedev\BedrockEconomy\api\BedrockEconomyAPI;
 
 
 class Main extends PluginBase implements Listener
@@ -23,21 +23,23 @@ class Main extends PluginBase implements Listener
 	private $status = [];
 	private $players = [];
 
-	public function onEnable():void
+	public function onEnable() : void
 	{
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
 		$this->status["STATUS"] = "off";
-                $this->status["timeStart"] = 0;
+        $this->status["timeStart"] = 0;
 	}
 
-	public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool
+
+	public function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool
 	{
 		if ($command->getName() === "mineparty") {
 			if (!isset($args[0])) {
 				$sender->sendMessage(C::RED . "Usage: /mineparty <join/quit>");
 				return true;
 			}
-			switch ($args[0]) {
+			switch ($args[0]) 
+			{
 				case 'join':
 					if ($sender instanceof Player) {
 						if ($this->status["STATUS"] === "on") {
@@ -52,6 +54,7 @@ class Main extends PluginBase implements Listener
 						$this->getServer()->getLogger()->info(C::RED . "Execute this command in-game!");
 					}
 					return true;
+
 				case 'quit':
 					if ($sender instanceof Player and $this->status["STATUS"] === "on") {
 						if (isset($this->players[$sender->getName()])) {
@@ -65,6 +68,7 @@ class Main extends PluginBase implements Listener
 						$sender->sendMessage("§c> You have not joined any ongoing mineparty to quit it!");
 					}
 					return true;
+
 				case 'start':
 					if (!$sender instanceof Player or $sender->hasPermission("mineparty.admin")) {
 						$this->status["STATUS"] = "on";
@@ -85,7 +89,8 @@ class Main extends PluginBase implements Listener
 		return true;
 	}
 
-	public function onQuit(PlayerQuitEvent $event):void
+
+	public function onQuit(PlayerQuitEvent $event) : void
 	{
 		if (isset($this->players[$event->getPlayer()->getName()])) {
 			unset($this->players[$event->getPlayer()->getName()]);
@@ -93,11 +98,12 @@ class Main extends PluginBase implements Listener
 		}
 	}
 
+
 	/**
 	 * @priority MONITOR
 	 */
 
-	public function onBreak(BlockBreakEvent $e):void
+	public function onBreak(BlockBreakEvent $e) : void
 	{
 		$name = $e->getPlayer()->getName();
 		if ($this->status["STATUS"] === "on") {
@@ -123,7 +129,7 @@ class Main extends PluginBase implements Listener
 				\n §b" . $player . C::RED . " : " . C::YELLOW . $winner . " Blocks
 				\n §b" . $player . " §ewins §f$" . $reward . " §e($" .$this->getConfig()->get("price-money"). " per block mined) 
 				\n§7===== §l========= ===== §r§7=====");
-				EconomyAPI::getInstance()->addMoney($player, (int)$reward);
+				BedrockEconomyAPI::legacy()->addToPlayerBalance($player, $reward);
 				foreach ($this->players as $player) {
 					unset($this->players[$player]);
 				}
