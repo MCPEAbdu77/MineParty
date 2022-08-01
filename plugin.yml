@@ -2,7 +2,7 @@
 name: MineParty
 version: 2.1.0
 main: MCA7\MineParty\Main
-api: 4.0.0
+api: [ 4.0.0, 5.0.0 ] 
 depend: BedrockEconomy
 
 commands:
